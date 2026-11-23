@@ -1,0 +1,43 @@
+# Motion Control Node - Default Configuration
+#
+# IMPORTANT: geometry.* and motion.* values here should match
+# path_planning_params.yaml exactly. The Motion Control Node regenerates
+# boring points locally and deterministically for execution, so mismatched
+# parameters between the two nodes would cause the executed points to
+# differ from the plan validated via the Path Planning service.
+
+motion_control_node:
+  ros__parameters:
+    # ==================================================================
+    # Geometry Parameters (must match path_planning_params.yaml)
+    # ==================================================================
+    geometry:
+      flap_width_mm: 24000.0
+      flap_height_mm: 3500.0
+      horizontal_pitch_mm: 4000.0
+      vertical_pitch_mm: 500.0
+      safety_margin_mm: 100.0
+
+    # ==================================================================
+    # Motion Profile Parameters (must match path_planning_params.yaml)
+    # ==================================================================
+    motion:
+      max_linear_velocity_mms: 500.0
+      max_linear_acceleration_mms2: 2000.0
+      time_step_ms: 50.0
+
+    # ==================================================================
+    # Drilling Cycle Timing [s]
+    # ==================================================================
+    # Full-speed values (realistic hardware timing):
+    drilling:
+      approach_duration_s: 2.0    # Fine positioning above the hole
+      drilling_duration_s: 1.5    # Actual rivet hole drilling
+      retract_duration_s: 1.0     # Tool withdrawal before next move
+
+    # ------------------------------------------------------------------
+    # Fast testing values (uncomment to speed up local demos ~10x):
+    # drilling:
+    #   approach_duration_s: 0.2
+    #   drilling_duration_s: 0.15
+    #   retract_duration_s: 0.1

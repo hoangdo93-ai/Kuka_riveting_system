@@ -1,0 +1,42 @@
+# Path Planning Node - Default Configuration
+
+path_planning_node:
+  # ====================================================================
+  # Geometry Parameters (A380 Landing Flap Riveting)
+  # ====================================================================
+  geometry:
+    # Landing flap dimensions [mm]
+    flap_width_mm: 24000.0        # 24 meters wide
+    flap_height_mm: 3500.0         # 3.5 meters high
+    
+    # Boring point spacing [mm]
+    horizontal_pitch_mm: 4000.0    # 4 meters between horizontal points
+    vertical_pitch_mm: 500.0       # 0.5 meters between vertical points
+    
+    # Safety margins around flap edges [mm]
+    safety_margin_mm: 100.0        # 10cm safety zone from edges
+  
+  # ====================================================================
+  # Motion Profile Parameters
+  # ====================================================================
+  motion:
+    # Linear velocity limit [mm/s]
+    # 500 mm/s = 0.5 m/s (conservative for industrial robot safety)
+    max_linear_velocity_mms: 500.0
+    
+    # Linear acceleration limit [mm/s²]
+    # 2000 mm/s² = 2 m/s² (gentle acceleration, less stress on structure)
+    max_linear_acceleration_mms2: 2000.0
+    
+    # Sampling time step [ms]
+    # 50ms = 20Hz (suitable for ROS2 real-time requirements)
+    time_step_ms: 50.0
+  
+  # ====================================================================
+  # Optional: Faster Profile (if safety is confirmed)
+  # Uncomment to use instead of defaults above
+  # ====================================================================
+  # motion:
+  #   max_linear_velocity_mms: 800.0
+  #   max_linear_acceleration_mms2: 3500.0
+  #   time_step_ms: 50.0
