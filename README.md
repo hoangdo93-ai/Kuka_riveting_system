@@ -252,28 +252,26 @@ Full list in `PHASE6_PRODUCTION_READINESS_SUMMARY.md`.
 ## Project Structure
 
 ```
-include/kuka_riveting/
-  geometry_calculator.hpp          trajectory_generator.hpp
-  motion_backend_interface.hpp     simulated_motion_backend.hpp
-  krc4_interface.hpp               krc4_motion_backend.hpp
-  path_planning_node.hpp           motion_control_node.hpp
-  e2e_pipeline_runner.hpp
+include/
+  e2e_pipeline_runner.hpp          motion_backend_interface.hpp
+  geometry_calculator.hpp          motion_control_node.hpp
+  krc4_interface.hpp               path_planning_node.hpp
+  krc4_motion_backend.hpp          simulated_motion_backend.hpp
+  trajectory_generator.hpp
 
 src/
-  path_planning_node_PHASE3.cpp    motion_control_node_PHASE5.cpp
+  path_planning_node.cpp           motion_control_node.cpp
   krc4_interface.cpp               krc4_motion_backend.cpp
 
-srv/PlanTrajectory.srv             action/ExecuteRiveting.action
-
-scripts/mock_krc4_server.py
-
 config/path_planning_params.yaml   config/motion_control_params.yaml
+config/kuka_params.yaml
 launch/path_planning.launch.py     launch/motion_control.launch.py
-launch/full_system.launch.py
+launch/full_system.launch.py       launch/mock_krc4_server.py
+launch/simulation_launch.py        launch/hardware_launch.py
 
 test/
   test_end_to_end_pipeline.cpp     test_end_to_end_hardware.cpp
-  test_full_system_launch.py       test_riveting_system.cpp
+  test_riveting_system.cpp
 
 docs/  (all PHASE*.md, DEPLOYMENT_CHECKLIST.md, design documents)
 ```
